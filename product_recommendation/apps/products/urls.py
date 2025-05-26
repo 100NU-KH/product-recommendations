@@ -1,9 +1,9 @@
-from django.urls import path, include
-from apis.product.views import ProductListApiView
+from django.urls import path, re_path
+from apis.product.views import ProductListApiView, ProductDetailRetrieveAPIView
 
 app_name = 'products'
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    path('list', ProductListApiView.as_view())
+    path('list', ProductListApiView.as_view()),
+    re_path(r'^detail/(?P<pk>\d+)/$', ProductDetailRetrieveAPIView.as_view()),
 ]

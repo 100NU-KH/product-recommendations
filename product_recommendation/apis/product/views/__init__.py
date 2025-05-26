@@ -1,1 +1,2 @@
 from .product_list import ProductListApiView
+from .product_detail import ProductDetailRetrieveAPIView
