@@ -13,15 +13,12 @@ class Recommender:
         target_item = Product.objects.get(id = prodcut_id)
         
         all_products = list(Product.objects.all())
-        print("########target_item", all_products)
         target_index = all_products.index(target_item)
-        print("-----------", target_index)
+
         cosine_sim_obj = cosine_similarity(tfid_matrix[target_index], tfid_matrix).flatten()
-        print("```````````", cosine_sim_obj)
+
         similarIndex_products_ = cosine_sim_obj.argsort()[-(top_n-1): -1][::-1]
-        print("[[[[[[[[[[[]]]]]]]]]]]   ", similarIndex_products_)
         similarIndex_products = [item_indx for item_indx in similarIndex_products_]
-        print(similarIndex_products)
         similar_products = list()
         for idx in similarIndex_products:
             similar_products.append(all_products[idx])
